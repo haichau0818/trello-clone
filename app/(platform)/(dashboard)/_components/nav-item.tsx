@@ -15,6 +15,7 @@ import {
  } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export type Organization = {
     id : string,
@@ -29,7 +30,6 @@ interface NavItemProps{
     organization : Organization,
     onExpand : (id:string) => void;
 } 
-
 
 export const NavItem = ({
     isExpanded,
@@ -62,7 +62,6 @@ export const NavItem = ({
             icon: <CreditCard className="h-4 w-4 mr-2"/>,
             href:`/organization/${organization.id}/billing`,
         }
-
     ]
 
     const onClick = (href:string) =>
@@ -116,3 +115,14 @@ export const NavItem = ({
       </AccordionItem>
     );
 };
+
+NavItem.Skeleton =  function SkeletonNavItem(){
+    return(
+        <div className="flex items-center gap-x-2" >
+            <div className="w-10 h-10 relative shrink-0">
+                <Skeleton className="h-full w-full absolute"/>
+                <Skeleton className="h-10 w-full"/>
+            </div>
+        </div>
+    )
+}
